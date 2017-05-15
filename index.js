@@ -24,4 +24,4 @@ const handleSubmit = (ev) => {
   `
 }
 
-personForm.onsubmit = handleSubmit
+personForm.addEventListener('submit', handleSubmit)

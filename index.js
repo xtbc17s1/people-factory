@@ -1,6 +1,14 @@
 const personForm = document.querySelector('form')
 
-personForm.onsubmit = (ev) => {
+const renderColor = (hairColor) => {
+  const colorDiv = document.createElement('div')
+  colorDiv.style.backgroundColor = hairColor
+  colorDiv.style.height = '50px'
+  colorDiv.style.width = '100px'
+  return colorDiv
+}
+
+const handleSubmit = (ev) => {
   ev.preventDefault()
   const form = ev.target
   const details = document.querySelector('.details')
@@ -10,10 +18,7 @@ personForm.onsubmit = (ev) => {
   const age = form.age.value
   const birthplace = form.birthplace.value
 
-  const colorDiv = document.createElement('div')
-  colorDiv.style.backgroundColor = hairColor
-  colorDiv.style.height = '50px'
-  colorDiv.style.width = '100px'
+  const colorDiv = renderColor(hairColor)
 
   details.innerHTML = `
     <ul>
@@ -24,3 +29,5 @@ personForm.onsubmit = (ev) => {
     </ul>
   `
 }
+
+personForm.onsubmit = handleSubmit

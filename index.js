@@ -17,9 +17,15 @@
 
   const renderList = (person) => {
     const list = document.createElement('ul')
-    Object.keys(person).map((fieldName, _i, _keys) => {
-      let li = renderListItem(fieldName, person[fieldName])
-      list.appendChild(li)
+    Array.from(person).map((input, _i, _elementsArray) => {
+      if (input.value) {
+        let value = input.value
+        if (input.type === 'color') {
+          value = renderColor(value).outerHTML
+        }
+        let li = renderListItem(input.name, value)
+        list.appendChild(li)
+      }
     })
 
     return list
@@ -30,14 +36,7 @@
     const form = ev.target
     const details = document.querySelector('.details')
 
-    const person = {
-      name: form.personName.value,
-      hairColor: renderColor(form.hairColor.value).outerHTML,
-      age: form.age.value,
-      birthplace: form.birthplace.value,
-    }
-
-    const list = renderList(person)
+    const list = renderList(form.elements)
 
     details.appendChild(list)
   }

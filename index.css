@@ -1,50 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,800|Gentium+Book+Basic:400i');
+
 body {
+  font-family: 'Open Sans', sans-serif;
   padding: 1rem;
 }
 
+h1 {
+  font: 800 64px/64px 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+h1 span {
+  font: 400 60px/60px 'gentium book basic';
+  font-style: italic;
+  text-transform: none;
+  margin: 0 4px 0 -10px;
+}
+
+section {
+  display: flex;
+}
+
 section > div {
-  width: 80%;
-  margin: 20px auto;
+  flex-grow: 1;
 }
 
-form {
-  margin-top: 50px;
-}
-
-dl {
-  padding: 15px 10px;
+.details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 dl > li {
   list-style: none;
 }
 
-dt, dd {
-  display: inline-block;
-  vertical-align: top;
-  width: 48%;
+dl > li + li {
+  margin-top: 1rem;
+}
+
+dl {
+  padding: 0.5em;
+}
+dt {
+  float: left;
+  clear: left;
+  width: 100px;
+  text-align: right;
+  font-weight: bold;
+  color: green;
+}
+dt::after {
+  content: ":";
+}
+dd {
+  margin: 0 0 0 110px;
+  padding: 0 0 0.5em 0;
 }
 
 dl:nth-of-type(even) {
   background-color: WhiteSmoke;
-}
-
-@media (min-width: 700px) {
-  section > div {
-    width: 60%;
-  }
-}
-
-@media (min-width: 900px) {
-  section > div {
-    float: left;
-    margin: 20px 5%;
-    width: 40%;
-  }
-
-  section::after {
-    clear: both;
-    content: "";
-    display: table;
-  }
 }

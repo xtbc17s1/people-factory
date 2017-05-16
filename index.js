@@ -1,45 +1,50 @@
-{
-  const personForm = document.querySelector('form')
+const App = {
+  init() {
+    const personForm = document.querySelector('form')
+    console.log(this)
+    console.log(this.handleSubmit)
+    personForm.addEventListener('submit', (ev) => this.handleSubmit(ev))
+  },
 
-  const renderColor = (hairColor) => {
+  renderColor(hairColor) {
     const colorDiv = document.createElement('div')
     colorDiv.style.height = '50px'
     colorDiv.style.width = '100px'
     colorDiv.style.backgroundColor = hairColor
     return colorDiv
-  }
+  },
 
-  const renderListItem = (name, value) => {
+  renderListItem(name, value) {
     const li = document.createElement('li')
     li.innerHTML = `${name}: ${value}`
     return li
-  }
+  },
 
-  const renderList = (person) => {
+  renderList(person) {
     const list = document.createElement('ul')
     Array.from(person).map((input, _i, _elementsArray) => {
       if (input.value) {
         let value = input.value
         if (input.type === 'color') {
-          value = renderColor(value).outerHTML
+          value = this.renderColor(value).outerHTML
         }
-        let li = renderListItem(input.name, value)
+        let li = this.renderListItem(input.name, value)
         list.appendChild(li)
       }
     })
 
     return list
-  }
+  },
 
-  const handleSubmit = (ev) => {
+  handleSubmit(ev) {
     ev.preventDefault()
     const form = ev.target
     const details = document.querySelector('.details')
 
-    const list = renderList(form.elements)
+    const list = this.renderList(form.elements)
 
     details.appendChild(list)
-  }
-
-  personForm.addEventListener('submit', handleSubmit)
+  },
 }
+
+App.init()

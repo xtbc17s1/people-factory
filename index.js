@@ -1,9 +1,10 @@
 const personForm = document.querySelector('form')
 
 const renderColor = (hairColor) => {
-  const colorDiv = `
-    <div style="height: 50px; width: 100px; background-color: ${hairColor}"></div>
-  `
+  const colorDiv = document.createElement('div')
+  colorDiv.style.height = '50px'
+  colorDiv.style.width = '100px'
+  colorDiv.style.backgroundColor = hairColor
   return colorDiv
 }
 
@@ -20,7 +21,7 @@ const handleSubmit = (ev) => {
   details.innerHTML = `
     <ul>
       <li>Name: ${personName}</li>
-      <li>Hair Color: ${renderColor(hairColor)}</li>
+      <li>Hair Color: ${renderColor(hairColor).outerHTML}</li>
       <li>Age: ${age}</li>
       <li>Birthplace: ${birthplace}</li>
     </ul>

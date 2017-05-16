@@ -8,26 +8,35 @@ const renderColor = (hairColor) => {
   return colorDiv
 }
 
+const renderItem = (name, value) => {
+  const item = document.createElement('li')
+  item.innerHTML = `${name}: ${value}`
+  return item
+}
+
+const renderList = (person) => {
+  const list = document.createElement('ul')
+  Object.keys(person).map((key, _i, _keys) => {
+    const li = renderItem(key, person[key])
+    list.appendChild(li)
+  })
+  return list
+}
+
 const handleSubmit = (ev) => {
   ev.preventDefault()
   const form = ev.target
   const details = document.querySelector('.details')
 
-  const personName = form.personName.value
-  const hairColor = form.hairColor.value
-  const age = form.age.value
-  const birthplace = form.birthplace.value
+  const person = {
+    personName: form.personName.value,
+    hairColor: renderColor(form.hairColor.value).outerHTML,
+    age: form.age.value,
+    birthplace: form.birthplace.value,
+  }
 
-  const colorDiv = renderColor(hairColor)
-
-  details.innerHTML = `
-    <ul>
-      <li>Name: ${personName}</li>
-      <li>Hair Color: ${colorDiv.outerHTML}</li>
-      <li>Age: ${age}</li>
-      <li>Birthplace: ${birthplace}</li>
-    </ul>
-  `
+  const list = renderList(person)
+  details.appendChild(list)
 }
 
 personForm.addEventListener('submit', handleSubmit)

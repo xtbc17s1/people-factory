@@ -18,7 +18,11 @@ const renderList = (person) => {
   const list = document.createElement('ul')
   Array.from(person).map((input, _i, _formElements) => {
     if (input.value) {
-      const li = renderItem(input.name, input.value)
+      let value = input.value
+      if (input.type === 'color') {
+        value = renderColor(value).outerHTML
+      }
+      const li = renderItem(input.name, value)
       list.appendChild(li)
     }
   })
